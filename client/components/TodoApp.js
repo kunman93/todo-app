@@ -6,7 +6,7 @@ const AddNewTodoSection = () => {
   return (
     <SafeAreaView style={styles.addNewTodoContainer}>
       <TextInput 
-        style={styles.addNewTaskInputText} placeholder='Add a new task' />
+        style={styles.addNewTaskInputText} placeholder='Write a new task' />
       <TouchableOpacity style={styles.addTaskButton}>
         <Text style={styles.addTaskButtonLabel}>Add</Text>
       </TouchableOpacity>
@@ -20,7 +20,7 @@ const TodoApp = () => {
   return (
     <View style={styles.toDoAppcontainer}>
       <StatusBar style="auto" />
-      <Text style={styles.title}>Todo-App</Text>
+      <Text style={styles.title}>Todo App</Text>
       <AddNewTodoSection />
       <TodoList />
     </View>
@@ -35,11 +35,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     width: '100%',
-    backgroundColor: '#f2f2f2'
+    backgroundColor: '#f2f2f2',
   },
   title: {
+    fontFamily: 'FuzzyBubblesRegular',
+    fontSize: '5vh',
     marginTop: '2vh',
-    fontSize: '5vh'
   },
   addNewTodoContainer: {
     flexDirection: 'row',
@@ -47,18 +48,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100vw',
     paddingTop: '2vh',
-    paddingBottom: '2vh',
+    paddingBottom: '3vh',
     borderBottomWidth: '0.08em',
     borderColor: '#cccccc',
   },
   addNewTaskInputText: {
     borderWidth: '1px',
     borderColor: '#cccccc',
-    borderRadius: '5px',
-    marginLeft: '3vw',
+    borderRadius: 5,
+    marginLeft: '5vw',
     paddingLeft: '2vw',
-    height: '5vh',
-    width: '70%',
+    height: '6vh',
+    width: '60%',
+    fontFamily: 'FuzzyBubblesRegular',
     fontSize: '2.5vh'
   },
   addTaskButton: {
@@ -67,13 +69,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: '0.08em',
     borderColor: '#cccccc',
-    borderRadius: '5px',
-    marginRight: '3vw',
-    height: '5vh',
-    width: '20%',
+    borderRadius: 5,
+    marginRight: '5vw',
+    height: '6vh',
+    width: '25%',
   },
   addTaskButtonLabel: {
-    fontSize: '2.5vh'
+    fontSize: '2.5vh',
+    fontFamily: 'FuzzyBubblesRegular'
   }
 });
 
