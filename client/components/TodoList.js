@@ -9,7 +9,7 @@ import DraggableFlatList from 'react-native-draggable-flatlist'
 const DATA = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        title: 'First Item',
+        title: 'First Item First ItemFirstFirstItemFirstFirstItemFirstFirst Item Item',
     },
     {
         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -18,6 +18,14 @@ const DATA = [
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d72',
         title: 'Third Item',
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e29d73',
+        title: 'Fourth Item',
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e29d74',
+        title: 'Fifth Item',
     },
 ];
 
@@ -67,7 +75,7 @@ const styles = StyleSheet.create({
     },
     toDoListItemContainer: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         alignItems: 'center',
         width: vw(85),
         paddingVertical: vh(3),
@@ -77,7 +85,7 @@ const styles = StyleSheet.create({
     checkBoxAndTaskDescriptionContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: '90%'
+        width: '85%',
     },
     checkBox: {
     },
@@ -87,7 +95,7 @@ const styles = StyleSheet.create({
         fontSize: vh(3.5),
     },
     deleteButton: {
-        marginRight: vw(3)
+        marginRight: vw(3),
     }
 });
 
