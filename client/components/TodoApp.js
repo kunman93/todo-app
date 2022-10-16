@@ -14,8 +14,6 @@ const AddNewTodoSection = () => {
   )
 }
 
-// TODO: All Pending Complete Tabulator + Clear All button
-
 const TodoApp = () => {
   return (
     <View style={styles.toDoAppcontainer}>
@@ -37,8 +35,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
   },
   title: {
-    fontFamily: 'FuzzyBubblesRegular',
-    fontSize: 30, 
+    fontFamily: 'FuzzyBubbles-Regular',
+    fontSize: vh(8), 
     marginTop: vh(2),
   },
   addNewTodoContainer: {
@@ -57,10 +55,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: vw(5),
     paddingLeft: vw(2),
-    height: vh(8),
+    height: vh(9),
     width: '60%',
-    fontFamily: 'FuzzyBubblesRegular',
-    fontSize: vh(2.5)
+    fontFamily: 'FuzzyBubbles-Regular',
+    fontSize: vh(3.5)
   },
   addTaskButton: {
     flexDirection: 'row',
@@ -70,12 +68,12 @@ const styles = StyleSheet.create({
     borderColor: '#cccccc',
     borderRadius: 5,
     marginRight: vw(5),
-    height: vh(8),
+    height: vh(9),
     width: '25%',
   },
   addTaskButtonLabel: {
-    fontSize: vh(2.5),
-    fontFamily: 'FuzzyBubblesRegular'
+    fontSize: vh(3.5),
+    fontFamily: 'FuzzyBubbles-Regular'
   }
 });
 

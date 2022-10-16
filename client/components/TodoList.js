@@ -2,7 +2,8 @@ import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity } from
 import CheckBox from '@react-native-community/checkbox'
 import { useState } from 'react';
 import { vh, vw } from 'react-native-css-vh-vw'
-//import { DraggableFlatList} from 'react-native-draggable-flatlist'
+import DraggableFlatList from 'react-native-draggable-flatlist'
+
 
 // todo: change this
 const DATA = [
@@ -20,36 +21,42 @@ const DATA = [
     },
 ];
 
-const Item = ({ task }) => {
+const Item = ({ task, drag }) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
     return (
-        <View style={styles.toDoListItemContainer}>
-            <View style={styles.checkBoxAndTaskDescriptionContainer}>
-                <CheckBox
-                    disabled={false}
-                    value={toggleCheckBox}
-                    onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                />
-                <Text style={styles.taskDescription}>{task}</Text>
+        <TouchableOpacity onPressIn={drag}>
+            <View style={styles.toDoListItemContainer}>
+                <View style={styles.checkBoxAndTaskDescriptionContainer}>
+                    <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                    />
+                    <Text style={styles.taskDescription}>{task}</Text>
+                </View>
+                <TouchableOpacity style={styles.deleteButton}>
+                    <Text>D</Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.deleteButton}>
-                <Text>D</Text>
-            </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     );
 }
 const TodoList = () => {
-    const renderItem = ({ item }) => (
-        <Item task={item.title} />
+    const [data, setData] = useState(DATA);
+
+    const renderItem = ({ item , drag}) => (
+        <Item task={item.title}
+                drag={drag} />
     );
 
     return (
         <SafeAreaView style={styles.toDoListContainer}>
-            <FlatList
-                data={DATA}
+            <DraggableFlatList
+                data={data}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
+                onDragEnd={({ data }) => setData(data)}
             />
         </SafeAreaView>
     );
@@ -60,7 +67,7 @@ const styles = StyleSheet.create({
     },
     toDoListItemContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         width: vw(85),
         paddingVertical: vh(3),
@@ -69,14 +76,15 @@ const styles = StyleSheet.create({
     },
     checkBoxAndTaskDescriptionContainer: {
         flexDirection: 'row',
+        alignItems: 'center',
         width: '90%'
     },
     checkBox: {
     },
     taskDescription: {
         marginLeft: vw(3),
-        fontFamily: 'FuzzyBubblesRegular',
-        fontSize: vh(2.5),
+        fontFamily: 'FuzzyBubbles-Regular',
+        fontSize: vh(3.5),
     },
     deleteButton: {
         marginRight: vw(3)
