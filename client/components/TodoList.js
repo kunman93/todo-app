@@ -13,15 +13,15 @@ const DATA = [
     },
     {
         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        title: 'Second Item',
+        title: 'Second Item Second Item Second ItemSecond ItemSecond ItemSecond ItemSecond Item',
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        title: 'Third Item',
+        title: 'Third Item  Third ItemThird ItemThird ItemThird ItemThird ItemThird ItemThird Item',
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d73',
-        title: 'Fourth Item',
+        title: 'Fourth Item Fourth Item Fourth Item Fourth ItemFourth Item',
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d74',
@@ -33,7 +33,7 @@ const Item = ({ task, drag }) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
     return (
-        <TouchableOpacity onPressIn={drag}>
+        <TouchableOpacity onLongPress={drag}>
             <View style={styles.toDoListItemContainer}>
                 <View style={styles.checkBoxAndTaskDescriptionContainer}>
                     <CheckBox
@@ -72,6 +72,7 @@ const TodoList = () => {
 
 const styles = StyleSheet.create({
     toDoListContainer: {
+        flex: 1
     },
     toDoListItemContainer: {
         flexDirection: 'row',
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         width: vw(85),
         paddingVertical: vh(3),
         borderBottomWidth: 0.8,
-        borderColor: '#cccccc'
+        borderColor: '#cccccc',
     },
     checkBoxAndTaskDescriptionContainer: {
         flexDirection: 'row',
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
         marginLeft: vw(3),
         fontFamily: 'FuzzyBubbles-Regular',
         fontSize: vh(3.5),
+        maxWidth: '85%'
     },
     deleteButton: {
         marginRight: vw(3),
