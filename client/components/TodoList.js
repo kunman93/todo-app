@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { useState } from 'react';
 import { vh, vw } from 'react-native-css-vh-vw'
@@ -25,7 +25,7 @@ const DATA = [
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d74',
-        title: 'Fifth Item',
+        title: 'Fifth Itemadsfasdfadsfasdfasdfasdfasdfasdfsa',
     },
 ];
 
@@ -33,7 +33,7 @@ const Item = ({ task, drag }) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
     return (
-        <TouchableOpacity onLongPress={drag}>
+        <TouchableHighlight onLongPress={drag} underlayColor="#DDDDDD">
             <View style={styles.toDoListItemContainer}>
                 <View style={styles.checkBoxAndTaskDescriptionContainer}>
                     <CheckBox
@@ -47,7 +47,7 @@ const Item = ({ task, drag }) => {
                     <Text>D</Text>
                 </TouchableOpacity>
             </View>
-        </TouchableOpacity>
+        </TouchableHighlight>
     );
 }
 const TodoList = () => {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: vw(85),
+        width: vw(90),
         paddingVertical: vh(3),
         borderBottomWidth: 0.8,
         borderColor: '#cccccc',
