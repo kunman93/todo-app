@@ -86,6 +86,7 @@ const TodoList = () => {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 onDragEnd={({ data }) => setData(data)}
+                showsVerticalScrollIndicator={false}
             />
         </SafeAreaView>
     );
