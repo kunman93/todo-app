@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { useState } from 'react';
 import { vh, vw } from 'react-native-css-vh-vw'
@@ -39,9 +39,11 @@ const Item = ({ task, drag, isActive }) => {
                 activeOpacity={1}
                 onLongPress={drag}
                 disabled={isActive}
-                style={{ backgroundColor: isActive ? 
-                        styles.touchableItemContainerOnLongPress.backgroundColor : 
-                        styles.touchableItemContainer.backgroundColor }}>
+                style={{
+                    backgroundColor: isActive ?
+                        styles.touchableItemContainerOnLongPress.backgroundColor :
+                        styles.touchableItemContainer.backgroundColor
+                }}>
                 <View style={styles.toDoListItemContainer}>
                     <View style={styles.checkBoxAndTaskDescriptionContainer}>
                         <CheckBox
@@ -56,6 +58,7 @@ const Item = ({ task, drag, isActive }) => {
                         <Icon
                             name="delete"
                             size={styles.deleteButton.fontSize}
+                            color={styles.deleteButton.color}
                         />
                     </TouchableOpacity>
                 </View>
@@ -120,6 +123,7 @@ const styles = StyleSheet.create({
     deleteButton: {
         marginRight: vw(3),
         fontSize: vh(5.0),
+        color: '#cc0000'
     }
 });
 

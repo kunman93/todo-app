@@ -6,7 +6,7 @@ const AddNewTodoSection = () => {
   return (
     <SafeAreaView style={styles.addNewTodoContainer}>
       <TextInput 
-        style={styles.addNewTaskInputText} placeholder='Write a new task' />
+        style={styles.addNewTaskInputText} placeholder='Write a new task'/>
       <TouchableOpacity style={styles.addTaskButton}>
         <Text style={styles.addTaskButtonLabel}>Add</Text>
       </TouchableOpacity>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderColor: '#cccccc',
     borderRadius: 5,
     marginLeft: vw(5),
-    paddingLeft: vw(2),
+    paddingLeft: vw(5),
     height: vh(9),
     width: '60%',
     fontFamily: 'FuzzyBubbles-Regular',
@@ -70,10 +70,12 @@ const styles = StyleSheet.create({
     marginRight: vw(5),
     height: vh(9),
     width: '25%',
+    backgroundColor: '#008000'
   },
   addTaskButtonLabel: {
     fontSize: vh(3.5),
-    fontFamily: 'FuzzyBubbles-Regular'
+    fontFamily: 'FuzzyBubbles-Bold',
+    color: '#f2f2f2'
   }
 });
 
