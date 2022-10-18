@@ -3,6 +3,7 @@ import CheckBox from '@react-native-community/checkbox'
 import { useState } from 'react';
 import { vh, vw } from 'react-native-css-vh-vw'
 import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist'
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
 // todo: change this
@@ -47,11 +48,15 @@ const Item = ({ task, drag, isActive }) => {
                             disabled={false}
                             value={toggleCheckBox}
                             onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                            style={styles.checkBox}
                         />
                         <Text style={styles.taskDescription}>{task}</Text>
                     </View>
                     <TouchableOpacity style={styles.deleteButton}>
-                        <Text>D</Text>
+                        <Icon
+                            name="delete"
+                            size={styles.deleteButton.fontSize}
+                        />
                     </TouchableOpacity>
                 </View>
             </TouchableOpacity>
@@ -114,6 +119,7 @@ const styles = StyleSheet.create({
     },
     deleteButton: {
         marginRight: vw(3),
+        fontSize: vh(5.0),
     }
 });
 
