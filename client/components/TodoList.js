@@ -32,7 +32,6 @@ const DATA = [
 const Item = ({ task, drag, isActive }) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
-    console.log(isActive)
     return (
         <ScaleDecorator>
             <TouchableOpacity
@@ -96,10 +95,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: vw(90),
-        paddingVertical: vh(3),
-        borderBottomWidth: 0.8,
+        paddingVertical: vh(4),
+        borderTopWidth: 0.8,
         borderColor: '#cccccc',
-
     },
     checkBoxAndTaskDescriptionContainer: {
         flexDirection: 'row',
