@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity  } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { useState } from 'react';
 import { vh, vw } from 'react-native-css-vh-vw'
-import DraggableFlatList from 'react-native-draggable-flatlist'
+import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist'
 
 
 // todo: change this
@@ -29,33 +29,44 @@ const DATA = [
     },
 ];
 
-const Item = ({ task, drag }) => {
+const Item = ({ task, drag, isActive }) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
+    console.log(isActive)
     return (
-        <TouchableHighlight onLongPress={drag} underlayColor="#DDDDDD">
-            <View style={styles.toDoListItemContainer}>
-                <View style={styles.checkBoxAndTaskDescriptionContainer}>
-                    <CheckBox
-                        disabled={false}
-                        value={toggleCheckBox}
-                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                    />
-                    <Text style={styles.taskDescription}>{task}</Text>
+        <ScaleDecorator>
+            <TouchableOpacity
+                activeOpacity={1}
+                onLongPress={drag}
+                disabled={isActive}
+                style={{ backgroundColor: isActive ? 
+                        styles.touchableItemContainerOnLongPress.backgroundColor : 
+                        styles.touchableItemContainer.backgroundColor }}>
+                <View style={styles.toDoListItemContainer}>
+                    <View style={styles.checkBoxAndTaskDescriptionContainer}>
+                        <CheckBox
+                            disabled={false}
+                            value={toggleCheckBox}
+                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        />
+                        <Text style={styles.taskDescription}>{task}</Text>
+                    </View>
+                    <TouchableOpacity style={styles.deleteButton}>
+                        <Text>D</Text>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.deleteButton}>
-                    <Text>D</Text>
-                </TouchableOpacity>
-            </View>
-        </TouchableHighlight>
+            </TouchableOpacity>
+        </ScaleDecorator>
     );
 }
 const TodoList = () => {
     const [data, setData] = useState(DATA);
 
-    const renderItem = ({ item , drag}) => (
-        <Item task={item.title}
-                drag={drag} />
+    const renderItem = ({ item, drag, isActive }) => (
+        <Item
+            task={item.title}
+            drag={drag}
+            isActive={isActive} />
     );
 
     return (
@@ -74,6 +85,12 @@ const styles = StyleSheet.create({
     toDoListContainer: {
         flex: 1
     },
+    touchableItemContainer: {
+        backgroundColor: '#f2f2f2'
+    },
+    touchableItemContainerOnLongPress: {
+        backgroundColor: '#DDDDDD'
+    },
     toDoListItemContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -82,6 +99,7 @@ const styles = StyleSheet.create({
         paddingVertical: vh(3),
         borderBottomWidth: 0.8,
         borderColor: '#cccccc',
+
     },
     checkBoxAndTaskDescriptionContainer: {
         flexDirection: 'row',
