@@ -1,12 +1,45 @@
 import TodoList from './TodoList'
-import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { useState } from 'react';
+import {
+  StyleSheet, Text, View, SafeAreaView,
+  TextInput, TouchableOpacity
+} from 'react-native';
 import { vh, vw } from 'react-native-css-vh-vw'
 
+const getBorderStyleForInputText = (isFocused) => {
+
+  const getBorderStyleForInputTextWhenNotFocused = () => {
+    return {
+      borderColor: styles.addNewTaskInputText.borderColor,
+      borderWidth: styles.addNewTaskInputText.borderWidth
+    }
+  }
+
+  const getBorderStyleForInputTextWhenFocused = () => {
+    return {
+      borderColor: styles.addNewTaskInputTextFocused.borderColor,
+      borderWidth: styles.addNewTaskInputTextFocused.borderWidth
+    }
+  }
+
+  if (isFocused) {
+    return getBorderStyleForInputTextWhenFocused()
+  }
+  return getBorderStyleForInputTextWhenNotFocused()
+}
+
 const AddNewTodoSection = () => {
+  const [isFocused, setIsFocused] = useState(false)
+
   return (
     <SafeAreaView style={styles.addNewTodoContainer}>
-      <TextInput 
-        style={styles.addNewTaskInputText} placeholder='Write a new task'/>
+      <TextInput
+        style={[styles.addNewTaskInputText,
+          , getBorderStyleForInputText(isFocused)]
+        }
+        placeholder='Write a new task'
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)} />
       <TouchableOpacity style={styles.addTaskButton}>
         <Text style={styles.addTaskButtonLabel}>Add</Text>
       </TouchableOpacity>
@@ -36,7 +69,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'FuzzyBubbles-Regular',
-    fontSize: vh(8), 
+    fontSize: vh(8),
     marginTop: vh(2),
   },
   addNewTodoContainer: {
@@ -59,6 +92,10 @@ const styles = StyleSheet.create({
     width: '60%',
     fontFamily: 'FuzzyBubbles-Regular',
     fontSize: vh(3.5)
+  },
+  addNewTaskInputTextFocused: {
+    borderWidth: 2,
+    borderColor: '#9999ff',
   },
   addTaskButton: {
     flexDirection: 'row',

@@ -1,4 +1,7 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import {
+    StyleSheet, Text, View,
+    SafeAreaView, TouchableOpacity
+} from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { useState } from 'react';
 import { vh, vw } from 'react-native-css-vh-vw'
