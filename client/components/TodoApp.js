@@ -38,12 +38,27 @@ const initialData = [
 const initialToggleCheckBoxesMap = new Map()
 initialData.forEach((data) => { initialToggleCheckBoxesMap.set(data.id, data.isChecked) })
 
-const defineEventHandler = (toggleCheckBoxesMap, setToggleCheckBoxesMap) => {
+const defineEventHandler = (data, setData, toggleCheckBoxesMap, setToggleCheckBoxesMap) => {
 
   const onCheckBoxToggle = (itemId) => {
+    updateToggleCheckBoxesMap(itemId)
+    updateCurrentData(itemId)
+  }
+
+  const updateToggleCheckBoxesMap = (itemId) => {
     let currentToggleCheckBoxesMap = new Map(toggleCheckBoxesMap)
     currentToggleCheckBoxesMap.set(itemId, !currentToggleCheckBoxesMap.get(itemId))
     setToggleCheckBoxesMap(currentToggleCheckBoxesMap)
+  }
+
+  const updateCurrentData = (itemId) => {
+    let currentData = [...data]
+    currentData.forEach((data) => {
+      if (data.id === itemId){
+        data.isChecked = !data.isChecked
+      }
+    })
+    setData(currentData)
   }
 
   return onCheckBoxToggle
@@ -71,8 +86,10 @@ const TodoApp = () => {
   const [isFocused, setIsFocused] = useState(false)
   const [toggleCheckBoxesMap, setToggleCheckBoxesMap] = useState(initialToggleCheckBoxesMap);
 
-  const onCheckBoxToggle = defineEventHandler(toggleCheckBoxesMap, setToggleCheckBoxesMap)
- 
+  const onCheckBoxToggle = defineEventHandler(
+    data, setData, toggleCheckBoxesMap, setToggleCheckBoxesMap
+  )
+  
   return (
     <View style={todoAppStyles.toDoAppcontainer}>
       <Text style={todoAppStyles.title}>Todo App</Text>
