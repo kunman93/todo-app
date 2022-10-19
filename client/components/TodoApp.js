@@ -4,39 +4,52 @@ import {
   Text, View, SafeAreaView,
   TextInput, TouchableOpacity
 } from 'react-native';
-import { todoAppStyles } from './styles/TodoApp';
+import { todoAppStyles, getBorderStyleForInputText } from './styles/TodoApp';
 
-const getBorderStyleForInputText = (isFocused) => {
+// todo: change this
+const initialData = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item First ItemFirstFirstItemFirstFirstItemFirstFirst Item Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item Second Item Second ItemSecond ItemSecond ItemSecond ItemSecond Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item  Third ItemThird ItemThird ItemThird ItemThird ItemThird ItemThird Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d73',
+    title: 'Fourth Item Fourth Item Fourth Item Fourth ItemFourth Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d74',
+    title: 'Fifth Itemadsfasdfadsfasdfasdfasdfasdfasdfsa',
+  },
+];
 
-  const getBorderStyleForInputTextWhenNotFocused = () => {
-    return {
-      borderColor: todoAppStyles.addNewTaskInputText.borderColor,
-      borderWidth: todoAppStyles.addNewTaskInputText.borderWidth
-    }
+const initialToggleCheckBoxesMap = new Map()
+initialData.forEach((data) => { initialToggleCheckBoxesMap.set(data.id, false) })
+
+const defineEventHandler = (toggleCheckBoxesMap, setToggleCheckBoxesMap) => {
+
+  const onCheckBoxToggle = (itemId) => {
+    let currentToggleCheckBoxesMap = new Map(toggleCheckBoxesMap)
+    currentToggleCheckBoxesMap.set(itemId, !currentToggleCheckBoxesMap.get(itemId))
+    setToggleCheckBoxesMap(currentToggleCheckBoxesMap)
   }
 
-  const getBorderStyleForInputTextWhenFocused = () => {
-    return {
-      borderColor: todoAppStyles.addNewTaskInputTextFocused.borderColor,
-      borderWidth: todoAppStyles.addNewTaskInputTextFocused.borderWidth
-    }
-  }
-
-  if (isFocused) {
-    return getBorderStyleForInputTextWhenFocused()
-  }
-  return getBorderStyleForInputTextWhenNotFocused()
+  return onCheckBoxToggle
 }
 
-const AddNewTodoSection = () => {
-  const [isFocused, setIsFocused] = useState(false)
-
+const AddNewTodoSection = ({ isFocused, setIsFocused }) => {
   return (
     <SafeAreaView style={todoAppStyles.addNewTodoContainer}>
       <TextInput
         style={[todoAppStyles.addNewTaskInputText,
-          , getBorderStyleForInputText(isFocused)]
-        }
+        getBorderStyleForInputText(isFocused)]}
         placeholder='Write a new task'
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)} />
@@ -48,11 +61,26 @@ const AddNewTodoSection = () => {
 }
 
 const TodoApp = () => {
+
+  const [data, setData] = useState(initialData);
+  const [isFocused, setIsFocused] = useState(false)
+  const [toggleCheckBoxesMap, setToggleCheckBoxesMap] = useState(initialToggleCheckBoxesMap);
+
+  const onCheckBoxToggle = defineEventHandler(toggleCheckBoxesMap, setToggleCheckBoxesMap)
+ 
   return (
     <View style={todoAppStyles.toDoAppcontainer}>
       <Text style={todoAppStyles.title}>Todo App</Text>
-      <AddNewTodoSection />
-      <TodoList />
+      <AddNewTodoSection
+        isFocused={isFocused}
+        setIsFocused={setIsFocused}
+      />
+      <TodoList
+        data={data}
+        setData={setData}
+        handleCheckBoxToggle={(itemId) => onCheckBoxToggle(itemId)}
+        toggleCheckBoxesMap={toggleCheckBoxesMap}
+      />
     </View>
   );
 }

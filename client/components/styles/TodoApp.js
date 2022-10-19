@@ -59,3 +59,25 @@ export const todoAppStyles = StyleSheet.create({
     color: '#f2f2f2'
   }
 });
+
+export const getBorderStyleForInputText = (isFocused) => {
+
+  const getBorderStyleForInputTextWhenNotFocused = () => {
+    return {
+      borderColor: todoAppStyles.addNewTaskInputText.borderColor,
+      borderWidth: todoAppStyles.addNewTaskInputText.borderWidth
+    }
+  }
+
+  const getBorderStyleForInputTextWhenFocused = () => {
+    return {
+      borderColor: todoAppStyles.addNewTaskInputTextFocused.borderColor,
+      borderWidth: todoAppStyles.addNewTaskInputTextFocused.borderWidth
+    }
+  }
+
+  if (isFocused) {
+    return getBorderStyleForInputTextWhenFocused()
+  }
+  return getBorderStyleForInputTextWhenNotFocused()
+}

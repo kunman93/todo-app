@@ -1,12 +1,10 @@
 import { Text, View, TouchableOpacity } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import { useState } from 'react';
 import { ScaleDecorator } from 'react-native-draggable-flatlist';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { itemStyles } from './styles/Item';
 
-export const Item = ({ task, drag, isActive }) => {
-    const [toggleCheckBox, setToggleCheckBox] = useState(false);
+export const Item = ({ task, drag, isActive, handleCheckBoxToggle, checkBoxValue}) => {
 
     return (
         <ScaleDecorator>
@@ -16,15 +14,15 @@ export const Item = ({ task, drag, isActive }) => {
                 disabled={isActive}
                 style={{
                     backgroundColor: isActive ?
-                        itemStyles.touchableItemContainerOnLongPress.backgroundColor :
-                        itemStyles.touchableItemContainer.backgroundColor
+                        itemStyles.touchableItemContainerOnLongPress.backgroundColor
+                        : itemStyles.touchableItemContainer.backgroundColor
                 }}>
                 <View style={itemStyles.toDoListItemContainer}>
                     <View style={itemStyles.checkBoxAndTaskDescriptionContainer}>
                         <CheckBox
                             disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                            value={checkBoxValue}
+                            onValueChange={handleCheckBoxToggle}
                             style={itemStyles.checkBox} />
                         <Text style={itemStyles.taskDescription}>{task}</Text>
                     </View>
