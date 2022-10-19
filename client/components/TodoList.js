@@ -1,12 +1,9 @@
 import {
-    Text, View,
-    SafeAreaView, TouchableOpacity
-} from 'react-native';
-import CheckBox from '@react-native-community/checkbox'
+    SafeAreaView} from 'react-native';
 import { useState } from 'react';
-import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist'
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import DraggableFlatList from 'react-native-draggable-flatlist'
 import { todoListStyles } from './styles/TodoList' 
+import { Item } from './Item';
 
 
 // todo: change this
@@ -33,42 +30,6 @@ const DATA = [
     },
 ];
 
-const Item = ({ task, drag, isActive }) => {
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
-
-    return (
-        <ScaleDecorator>
-            <TouchableOpacity
-                activeOpacity={1}
-                onLongPress={drag}
-                disabled={isActive}
-                style={{
-                    backgroundColor: isActive ?
-                        todoListStyles.touchableItemContainerOnLongPress.backgroundColor :
-                        todoListStyles.touchableItemContainer.backgroundColor
-                }}>
-                <View style={todoListStyles.toDoListItemContainer}>
-                    <View style={todoListStyles.checkBoxAndTaskDescriptionContainer}>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                            style={todoListStyles.checkBox}
-                        />
-                        <Text style={todoListStyles.taskDescription}>{task}</Text>
-                    </View>
-                    <TouchableOpacity style={todoListStyles.deleteButton}>
-                        <Icon
-                            name="delete"
-                            size={todoListStyles.deleteButton.fontSize}
-                            color={todoListStyles.deleteButton.color}
-                        />
-                    </TouchableOpacity>
-                </View>
-            </TouchableOpacity>
-        </ScaleDecorator>
-    );
-}
 const TodoList = () => {
     const [data, setData] = useState(DATA);
 
