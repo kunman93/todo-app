@@ -6,33 +6,7 @@ import { todoAppStyles } from './styles/TodoApp';
 import { defineEventHandler } from './events/Event';
 import { AddNewTodoSection } from './AddNewTodoSection';
 
-const initialData = [
-  /*{
-    id: uuidv4().toString,
-    task: 'First Item First ItemFirstFirstItemFirstFirstItemFirstFirst Item Item',
-    isChecked: false
-  },
-  {
-    id: uuidv4(),
-    task: 'Second Item Second Item Second ItemSecond ItemSecond ItemSecond ItemSecond Item',
-    isChecked: false
-  },
-  {
-    id: uuidv4(),
-    task: 'Third Item  Third ItemThird ItemThird ItemThird ItemThird ItemThird ItemThird Item',
-    isChecked: false
-  },
-  {
-    id: uuidv4(),
-    task: 'Fourth Item Fourth Item Fourth Item Fourth ItemFourth Item',
-    isChecked: false
-  },
-  {
-    id: uuidv4(),
-    task: 'Fifth Itemadsfasdfadsfasdfasdfasdfasdfasdfsa',
-    isChecked: false
-  },*/
-];
+const initialData = [];
 
 const initialToggleCheckBoxesMap = new Map()
 initialData.forEach((data) => { initialToggleCheckBoxesMap.set(data.id, data.isChecked) })
