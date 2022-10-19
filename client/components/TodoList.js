@@ -1,12 +1,12 @@
 import {
-    StyleSheet, Text, View,
+    Text, View,
     SafeAreaView, TouchableOpacity
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { useState } from 'react';
-import { vh, vw } from 'react-native-css-vh-vw'
 import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import { todoListStyles } from './styles/TodoList' 
 
 
 // todo: change this
@@ -44,24 +44,24 @@ const Item = ({ task, drag, isActive }) => {
                 disabled={isActive}
                 style={{
                     backgroundColor: isActive ?
-                        styles.touchableItemContainerOnLongPress.backgroundColor :
-                        styles.touchableItemContainer.backgroundColor
+                        todoListStyles.touchableItemContainerOnLongPress.backgroundColor :
+                        todoListStyles.touchableItemContainer.backgroundColor
                 }}>
-                <View style={styles.toDoListItemContainer}>
-                    <View style={styles.checkBoxAndTaskDescriptionContainer}>
+                <View style={todoListStyles.toDoListItemContainer}>
+                    <View style={todoListStyles.checkBoxAndTaskDescriptionContainer}>
                         <CheckBox
                             disabled={false}
                             value={toggleCheckBox}
                             onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                            style={styles.checkBox}
+                            style={todoListStyles.checkBox}
                         />
-                        <Text style={styles.taskDescription}>{task}</Text>
+                        <Text style={todoListStyles.taskDescription}>{task}</Text>
                     </View>
-                    <TouchableOpacity style={styles.deleteButton}>
+                    <TouchableOpacity style={todoListStyles.deleteButton}>
                         <Icon
                             name="delete"
-                            size={styles.deleteButton.fontSize}
-                            color={styles.deleteButton.color}
+                            size={todoListStyles.deleteButton.fontSize}
+                            color={todoListStyles.deleteButton.color}
                         />
                     </TouchableOpacity>
                 </View>
@@ -80,7 +80,7 @@ const TodoList = () => {
     );
 
     return (
-        <SafeAreaView style={styles.toDoListContainer}>
+        <SafeAreaView style={todoListStyles.toDoListContainer}>
             <DraggableFlatList
                 data={data}
                 renderItem={renderItem}
@@ -91,44 +91,5 @@ const TodoList = () => {
         </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    toDoListContainer: {
-        flex: 1
-    },
-    touchableItemContainer: {
-        backgroundColor: '#f2f2f2'
-    },
-    touchableItemContainerOnLongPress: {
-        backgroundColor: '#DDDDDD'
-    },
-    toDoListItemContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: vw(90),
-        paddingVertical: vh(4),
-        borderTopWidth: 0.8,
-        borderColor: '#cccccc',
-    },
-    checkBoxAndTaskDescriptionContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: '85%',
-    },
-    checkBox: {
-    },
-    taskDescription: {
-        marginLeft: vw(3),
-        fontFamily: 'FuzzyBubbles-Regular',
-        fontSize: vh(3.5),
-        maxWidth: '85%'
-    },
-    deleteButton: {
-        marginRight: vw(3),
-        fontSize: vh(5.0),
-        color: '#cc0000'
-    }
-});
 
 export default TodoList
