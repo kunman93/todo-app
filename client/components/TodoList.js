@@ -4,7 +4,7 @@ import DraggableFlatList from 'react-native-draggable-flatlist'
 import { todoListStyles } from './styles/TodoList' 
 import { Item } from './Item';
 
-const TodoList = ({data, setData, handleCheckBoxToggle, toggleCheckBoxesMap}) => {
+const TodoList = ({data, setData, toggleCheckBoxesMap, handleCheckBoxToggle, handleDeleteButtonClick}) => {
 
     const renderItem = ({ item, drag, isActive}) => (
         <Item
@@ -12,6 +12,7 @@ const TodoList = ({data, setData, handleCheckBoxToggle, toggleCheckBoxesMap}) =>
             drag={drag}
             isActive={isActive}
             handleCheckBoxToggle={() => handleCheckBoxToggle(item.id) }
+            handleDeleteButtonClick={() => handleDeleteButtonClick(item.id)}
             checkBoxValue={toggleCheckBoxesMap.get(item.id)}
          />
     );

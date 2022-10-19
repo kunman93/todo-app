@@ -4,7 +4,7 @@ import { ScaleDecorator } from 'react-native-draggable-flatlist';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { itemStyles } from './styles/Item';
 
-export const Item = ({ task, drag, isActive, handleCheckBoxToggle, checkBoxValue }) => {
+export const Item = ({ task, drag, isActive, handleCheckBoxToggle, handleDeleteButtonClick, checkBoxValue }) => {
 
     return (
         <ScaleDecorator>
@@ -29,7 +29,9 @@ export const Item = ({ task, drag, isActive, handleCheckBoxToggle, checkBoxValue
                             'line-through' : 'none'
                         }]}>{task}</Text>
                     </View>
-                    <TouchableOpacity style={itemStyles.deleteButton}>
+                    <TouchableOpacity 
+                        style={itemStyles.deleteButton}
+                        onPress={handleDeleteButtonClick}>
                         <Icon
                             name="delete"
                             size={itemStyles.deleteButton.fontSize}
