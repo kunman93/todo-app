@@ -83,7 +83,7 @@ const TodoApp = () => {
       <TodoList
         data={data}
         setData={setData}
-        handleCheckBoxToggle={(itemId) => onCheckBoxToggle(itemId)}
+        handleCheckBoxToggle={onCheckBoxToggle}
         toggleCheckBoxesMap={toggleCheckBoxesMap}
       />
     </View>
