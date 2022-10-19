@@ -8,7 +8,7 @@ const TodoList = ({data, setData, handleCheckBoxToggle, toggleCheckBoxesMap}) =>
 
     const renderItem = ({ item, drag, isActive}) => (
         <Item
-            task={item.title}
+            task={item.task}
             drag={drag}
             isActive={isActive}
             handleCheckBoxToggle={() => handleCheckBoxToggle(item.id) }

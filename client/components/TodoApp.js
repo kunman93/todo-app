@@ -10,28 +10,33 @@ import { todoAppStyles, getBorderStyleForInputText } from './styles/TodoApp';
 const initialData = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item First ItemFirstFirstItemFirstFirstItemFirstFirst Item Item',
+    task: 'First Item First ItemFirstFirstItemFirstFirstItemFirstFirst Item Item',
+    isChecked: false
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item Second Item Second ItemSecond ItemSecond ItemSecond ItemSecond Item',
+    task: 'Second Item Second Item Second ItemSecond ItemSecond ItemSecond ItemSecond Item',
+    isChecked: false
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item  Third ItemThird ItemThird ItemThird ItemThird ItemThird ItemThird Item',
+    task: 'Third Item  Third ItemThird ItemThird ItemThird ItemThird ItemThird ItemThird Item',
+    isChecked: false
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d73',
-    title: 'Fourth Item Fourth Item Fourth Item Fourth ItemFourth Item',
+    task: 'Fourth Item Fourth Item Fourth Item Fourth ItemFourth Item',
+    isChecked: false
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d74',
-    title: 'Fifth Itemadsfasdfadsfasdfasdfasdfasdfasdfsa',
+    task: 'Fifth Itemadsfasdfadsfasdfasdfasdfasdfasdfsa',
+    isChecked: false
   },
 ];
 
 const initialToggleCheckBoxesMap = new Map()
-initialData.forEach((data) => { initialToggleCheckBoxesMap.set(data.id, false) })
+initialData.forEach((data) => { initialToggleCheckBoxesMap.set(data.id, data.isChecked) })
 
 const defineEventHandler = (toggleCheckBoxesMap, setToggleCheckBoxesMap) => {
 
