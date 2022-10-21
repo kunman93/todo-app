@@ -57,8 +57,10 @@ export const getBorderStyleForInputText = (isFocused) => {
 
   const getBorderStyleForInputTextWhenFocused = () => {
     return {
-      borderColor: addNewTodoSectionStyles.addNewTaskInputTextFocused.borderColor,
-      borderWidth: addNewTodoSectionStyles.addNewTaskInputTextFocused.borderWidth
+      borderColor: addNewTodoSectionStyles
+      .addNewTaskInputTextFocused.borderColor,
+      borderWidth: addNewTodoSectionStyles
+      .addNewTaskInputTextFocused.borderWidth
     }
   }
 

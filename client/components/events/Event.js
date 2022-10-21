@@ -12,7 +12,8 @@ export const defineEventHandler = (data, setData,
 
   const updateToggleCheckBoxesMap = (itemId) => {
     let currentToggleCheckBoxesMap = new Map(toggleCheckBoxesMap);
-    currentToggleCheckBoxesMap.set(itemId, !currentToggleCheckBoxesMap.get(itemId));
+    currentToggleCheckBoxesMap
+      .set(itemId, !currentToggleCheckBoxesMap.get(itemId));
     setToggleCheckBoxesMap(currentToggleCheckBoxesMap);
   };
 
@@ -44,7 +45,7 @@ export const defineEventHandler = (data, setData,
   };
 
   const onAddButtonClick = () => {
-    if(!taskDescription) {
+    if (!taskDescription) {
       return
     }
     let itemId = uuidv4();
@@ -61,6 +62,7 @@ export const defineEventHandler = (data, setData,
     };
     currentData.push(newTask);
     setData(currentData);
+    setTaskDescription("")
   };
 
   const addNewEntryInToggleCheckBoxesMap = (itemId) => {

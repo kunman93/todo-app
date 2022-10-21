@@ -2,9 +2,14 @@ import {
   Text, SafeAreaView,
   TextInput, TouchableOpacity
 } from 'react-native';
-import { addNewTodoSectionStyles, getBorderStyleForInputText } from './styles/AddNewTodoSection';
+import {
+  addNewTodoSectionStyles,
+  getBorderStyleForInputText
+} from './styles/AddNewTodoSection';
 
-export const AddNewTodoSection = ({ isFocused, setIsFocused, setTaskDescription, handleAddButtonClick }) => {
+export const AddNewTodoSection = ({ isFocused, setIsFocused,
+  taskDescription, setTaskDescription,
+  handleAddButtonClick }) => {
   return (
     <SafeAreaView style={addNewTodoSectionStyles.addNewTodoContainer}>
       <TextInput
@@ -12,6 +17,7 @@ export const AddNewTodoSection = ({ isFocused, setIsFocused, setTaskDescription,
         getBorderStyleForInputText(isFocused)]}
         placeholder='Write a new task'
         onChangeText={setTaskDescription}
+        value={taskDescription}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)} />
       <TouchableOpacity

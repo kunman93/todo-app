@@ -4,7 +4,8 @@ import { ScaleDecorator } from 'react-native-draggable-flatlist';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { itemStyles } from './styles/Item';
 
-export const Item = ({ task, drag, isActive, handleCheckBoxToggle, handleDeleteButtonClick, checkBoxValue }) => {
+export const Item = ({ task, drag, isActive,
+    handleCheckBoxToggle, handleDeleteButtonClick, checkBoxValue }) => {
 
     return (
         <ScaleDecorator>
@@ -14,22 +15,24 @@ export const Item = ({ task, drag, isActive, handleCheckBoxToggle, handleDeleteB
                 disabled={isActive}
                 style={{
                     backgroundColor: isActive ?
-                        itemStyles.touchableItemContainerOnLongPress.backgroundColor
+                        itemStyles.touchableItemContainerOnLongPress
+                            .backgroundColor
                         : itemStyles.touchableItemContainer.backgroundColor
                 }}>
                 <View style={itemStyles.toDoListItemContainer}>
-                    <View style={itemStyles.checkBoxAndTaskDescriptionContainer}>
+                    <View style={itemStyles
+                        .checkBoxAndTaskDescriptionContainer}>
                         <CheckBox
                             disabled={false}
                             value={checkBoxValue}
                             onValueChange={handleCheckBoxToggle}
                             style={itemStyles.checkBox} />
                         <Text style={[itemStyles.taskDescription, {
-                            textDecorationLine: checkBoxValue ? 
-                            'line-through' : 'none'
+                            textDecorationLine: checkBoxValue ?
+                                'line-through' : 'none'
                         }]}>{task}</Text>
                     </View>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={itemStyles.deleteButton}
                         onPress={handleDeleteButtonClick}>
                         <Icon
